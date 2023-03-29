@@ -1,0 +1,14 @@
+function getComputerChoice -> returns rock, paper, or scissors randomly from an array
+function parsePlayerInput(input) -> prompts player to input either rock, paper, or scissors and parses input so its lowercase
+function playround (playerselection, computerselection) -> 
+ -compares playerselection and computer selection
+ -returns winner and the result
+
+initialize playerScore and computerScore to keep track
+number of games is constant and set to 5
+
+for loop to run until the number of games
+outputs winner each round and increases score based on winner
+
+outputs overall winner and the respective score
+

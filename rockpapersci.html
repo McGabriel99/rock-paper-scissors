@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+        const moves = ["rock", "paper", "scissors"];
+        function getComputerChoice(){
+            const randomIndex = Math.floor(Math.random() * moves.length);
+            const computerChoice = moves[randomIndex];
+            return computerChoice; 
+        }
+        function parseUserInput(str){
+            const playerChoice = str.toLowerCase();
+            return playerChoice;
+        }
+        function playRound(player, computer){
+            let result;
+            let winner;
+            switch (player){
+                case "rock":
+                    switch (computer){
+                        case "rock":
+                            result = "Tie!";
+                            winner = null;
+                            break;
+                        case "paper":
+                            result = "Computer wins!";
+                            winner = "computer";
+                            break;
+                        case "scissors":
+                            result = "Player wins!";
+                            winner = "player";
+                            break;
+                    }
+                break;
+                case "paper":
+                    switch (computer){
+                        case "rock":
+                            result = "Player wins!";
+                            winner = "player";
+                            break;
+                        case "paper":
+                            result = "Tie!";
+                            winner = null;
+                            break;
+                        case "scissors":
+                            result = "Computer wins!";
+                            winner = "computer";
+                            break;
+                    }
+                break;
+                case "scissors":
+                    switch (computer){
+                        case "rock":
+                            result = "Computer wins!";
+                            winner = "computer";
+                            break;
+                        case "paper":
+                            result = "Player wins!";
+                            winner = "player";
+                            break;
+                        case "scissors":
+                            result = "Tie!";
+                            winner = null;
+                            break;
+                    }
+                break;
+                default:
+                result = "Invalid choice!";
+                winner = null;
+                break;
+                
+            }
+            return {result, winner};
+        }
+        
+
+        let playerScore = 0;
+        let computerScore = 0;
+        const numGames = 5
+        for (let i = 0; i < numGames; i++){
+            const player = parseUserInput(prompt("Rock, Paper, or Scissors: "));
+            const computer = getComputerChoice();
+            const roundResult = playRound(player, computer);
+            console.log(`Game ${i + 1}: Player choise ${player}, computer chose ${computer}. 
+            ${roundResult.result}`);
+            if(roundResult.winner === "player"){
+                playerScore++;
+            }
+            else if (roundResult.winner === "computer"){
+                computerScore++;
+            }
+        }
+        console.log(`Player score: ${playerScore}, Computer score: ${computerScore}`);
+        if (playerScore > computerScore){
+            console.log(`Player wins by ${playerScore-computerScore} points!`)
+        }
+        else if(playerScore < computerScore){
+            console.log(`Computer wins by ${computerScore-playerScore} points!`)
+        }
+        else if (playerScore === computerScore){
+            console.log("It's a tie!")
+        }
+
+    </script>
+</body>
+</html>
